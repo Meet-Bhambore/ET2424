@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Attendance Tracker</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f2f2f2;
+    }
+
+    h1 {
+        margin-top: 20px;
+    }
+
+    .form-container {
+        margin: 20px;
+    }
+
+    input, select {
+        padding: 10px;
+        margin: 10px;
+        width: 180px;
+    }
+
+    button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: darkgreen;
+    }
+
+    table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        width: 80%;
+        background-color: white;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #ddd;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Attendance Tracker</h1>
+
+<div class="form-container">
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="usn" placeholder="Enter USN">
+    <input type="text" id="dept" placeholder="Enter Department">
+    <input type="date" id="date">
+
+    <br>
+
+    <select id="status">
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+    </select>
+
+    <br>
+
+    <button onclick="addRecord()">Add Record</button>
+</div>
+
+<table id="attendanceTable">
+    <tr>
+        <th>Sr No</th>
+        <th>Name</th>
+        <th>USN</th>
+        <th>Department</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+</table>
+
+<script>
+    let count = 1;
+
+    function addRecord() {
+        let name = document.getElementById("name").value;
+        let usn = document.getElementById("usn").value;
+        let dept = document.getElementById("dept").value;
+        let date = document.getElementById("date").value;
+        let status = document.getElementById("status").value;
+
+        if (name === "" || usn === "" || dept === "" || date === "") {
+            alert("Please fill all fields!");
+            return;
+        }
+
+        let table = document.getElementById("attendanceTable");
+
+        let row = table.insertRow();
+
+        row.insertCell(0).innerText = count++;
+        row.insertCell(1).innerText = name;
+        row.insertCell(2).innerText = usn;
+        row.insertCell(3).innerText = dept;
+        row.insertCell(4).innerText = date;
+        row.insertCell(5).innerText = status;
+
+        // Clear inputs
+        document.getElementById("name").value = "";
+        document.getElementById("usn").value = "";
+        document.getElementById("dept").value = "";
+        document.getElementById("date").value = "";
+    }
+</script>
+
+</body>
+</html>
